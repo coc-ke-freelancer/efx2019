@@ -1,5 +1,6 @@
 const request = require("request");
 const fs = require('fs');
+import { crawlData } from "./helpers/parseoptionsboards"
 
 let getData = async () => {
     let options = {

@@ -5,6 +5,7 @@ const request = require("request");
 let crawlData = (options) => {
     return new Promise(resolve => {
         request(options, function (error, response, body) {
+
             if (error) throw new Error(error);
             let $ = cheerio.load(body.toString());
             // col1
@@ -17,6 +18,7 @@ let crawlData = (options) => {
                 groups.time = $(d).text().trim().split("\t").pop();
                 contents.push(JSON.parse(JSON.stringify(groups)));
             })
+
             // col2
             let cols2 = $(".t-bank-h-col2");
             cols2.each((i, d) => {
