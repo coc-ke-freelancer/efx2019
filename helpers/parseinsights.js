@@ -6,7 +6,7 @@ import { fetchImage } from './fetchimage';
 
 let crawlInsights = (options) => {
     return new Promise(resolve => {
-        request(options, function (error, response, body) {
+        request(options, (error, response, body) => {
 
             if (error) throw new Error(error);
             let $ = cheerio.load(body.toString());
@@ -33,18 +33,27 @@ let crawlInsights = (options) => {
             descrition.each((i, d) => {
                 insights[i].description = $(d).attr("data-body");
                 let $$ = cheerio.load(insights[i].description);
-                insights[i].imgs = [];
                 $$("img").each((i2, d2) => {
                     let url = $$(d2).attr("src");
+                    insights[i].description = insights[i].description.replace(url, '__0x01__')
                     url = url.substring(0, url.indexOf('?'));
 
                     let formatFile = url.split('.').pop();
                     let hashUrl = xxhash.h32(url, 0x001).toString(16);
+                    insights[i].description = insights[i].description.replace(
+                        '__0x01__',
+                        `https://efx.traderviet.com/images/${hashUrl}.${formatFile}`
+                    );
 
-                    fetchImage('https://' + options.headers.authority + url, './image/' + hashUrl + '.' + formatFile,
+                    fetchImage('https://' + options.headers.authority + url, './images/' + hashUrl + '.' + formatFile,
                         (err) => console.log(err));
                 });
             });
+            for (let i = 0; i < insights.length; i++) {
+                let hashId = xxhash.h32(insights[i].timemoment + insights[i].timeStamp + insights[i].title, 0x00).toString(16);
+                insights[i].hashId = hashId;
+                console.log(hashId, insights[i].title, insights[i].type);
+            }
             return resolve(insights);
         });
     });

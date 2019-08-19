@@ -9,7 +9,8 @@ let NewsSchema = new Schema([{
     title: String,
     timemoment: String,
     timeStamp: String,
-    description: String
+    description: String,
+    hashId: String
 }]);
 NewsSchema.plugin(timestamp);
 let NewsModel = model('news', NewsSchema);

@@ -6,7 +6,7 @@ import { fetchImage } from './fetchimage';
 
 let crawlDataPreview = (options) => {
     return new Promise(resolve => {
-        request(options, function (error, response, body) {
+        request(options, (error, response, body) => {
 
             if (error) throw new Error(error);
             let $ = cheerio.load(body.toString());
@@ -32,21 +32,31 @@ let crawlDataPreview = (options) => {
             let descrition = $(".newsBody");
             descrition.each((i, d) => {
                 datapreviews[i].description = $(d).attr("data-body");
-                let $$ = cheerio.load(datapreviews[i].description)
+                let $$ = cheerio.load(datapreviews[i].description);
                 datapreviews[i].imgs = [];
                 $$("img").each((i2, d2) => {
                     let url = $$(d2).attr("src");
+                    datapreviews[i].description = datapreviews[i].description.replace(url, '__0x01__');
                     url = url.substring(0, url.indexOf('?'));
 
                     let formatFile = url.split('.').pop();
                     let hashUrl = xxhash.h32(url, 0x001).toString(16);
+                    datapreviews[i].description = datapreviews[i].description.replace(
+                        '__0x01__',
+                        `https://efx.traderviet.com/images/${hashUrl}.${formatFile}`
+                    );
 
-                    fetchImage('https://' + options.headers.authority + url, './image/' + hashUrl + '.' + formatFile,
+                    fetchImage('https://' + options.headers.authority + url, './images/' + hashUrl + '.' + formatFile,
                         (err) => console.log(err));
                     // datapreviews[i].imgs.push(url);
                 });
                 // console.log(datapreviews[i]);
             });
+            for (let i = 0; i < datapreviews.length; i++) {
+                let hashId = xxhash.h32(datapreviews[i].timemoment + datapreviews[i].timeStamp + datapreviews[i].title, 0x00).toString(16);
+                datapreviews[i].hashId = hashId;
+                console.log(hashId, datapreviews[i].title, datapreviews[i].type);
+            }
             return resolve(datapreviews);
         });
     });
