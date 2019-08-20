@@ -3,11 +3,11 @@ const moment = require('moment-timezone');
 let request = require("request");
 const xxhash = require('xxhashjs');
 import { fetchImage } from './fetchimage';
-const FileCookieStore = require('tough-cookie-filestore');
-const j = request.jar(new FileCookieStore('./cookies.json'));
-request = request.defaults({ jar: j });
 
 let crawlInsights = (options) => {
+    const FileCookieStore = require('tough-cookie-filestore');
+    const j = request.jar(new FileCookieStore('./cookies.json'));
+    request = request.defaults({ jar: j });
     return new Promise(resolve => {
         request(options, (error, response, body) => {
             console.log(options);
