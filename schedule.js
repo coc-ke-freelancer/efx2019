@@ -1,7 +1,8 @@
 import { crawlOptionBoards } from "./helpers/parseoptionsboards";
 import { crawlInsights } from './helpers/parseinsights';
 import { crawlDataPreview } from './helpers/parsedatapreview';
-import { optionsBoards, optionsDataPreviews, optionsInsights } from './options'
+import { crawlCookies } from './helpers/fetchcookies';
+import { optionsCookies, optionsBoards, optionsDataPreviews, optionsInsights } from './options'
 
 let NewsModel = require('./models/news');
 
@@ -53,6 +54,12 @@ let _modules = [
     }
 ]
 
+schedule.scheduleJob("*/15 * * * *", async () => {
+    await getData(crawlCookies, optionsCookies).then(result => {
+        debug('get Cookies OK !!!');
+    });
+});
+
 for (const iterator of _modules) {
     schedule.scheduleJob(iterator.schedule, async () => {
         iterator.model.create(await iterator.filter(await iterator.action(iterator.fn, iterator.option)))
@@ -63,6 +70,7 @@ for (const iterator of _modules) {
 }
 
 let boot = async () => {
+    debug("Start BOOT !!!");
     for (const iterator of _modules) {
         iterator.model.create(await iterator.filter(await iterator.action(iterator.fn, iterator.option)))
             .then(result => {

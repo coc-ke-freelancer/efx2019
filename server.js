@@ -25,6 +25,11 @@ app.use(favicon(resolve('.', 'favicon.ico')))
 
 trace(ENV)
 
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    return next();
+})
+
 app.use(router)
 
 trace("Add [UPLOAD] router")

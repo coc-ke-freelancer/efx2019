@@ -41,7 +41,7 @@ let crawlOptionBoards = (options) => {
             cols3.each((i, d) => {
                 optionboards[i].description = $(d).attr("data-body");
                 let $$ = cheerio.load(optionboards[i].description);
-                $$("img").each((i2, d2) => {
+                $$("img").each(async (i2, d2) => {
                     let url = $$(d2).attr("src");
                     optionboards[i].description = optionboards[i].description.replace(url, '__0x01__');
                     url = url.substring(0, url.indexOf('?'));
@@ -50,11 +50,11 @@ let crawlOptionBoards = (options) => {
                     let hashUrl = xxhash.h32(url, 0x001).toString(16);
                     optionboards[i].description = optionboards[i].description.replace(
                         '__0x01__',
-                        `https://efx.traderviet.com/images/${hashUrl}.${formatFile}`
+                        `https://api-efx.caybua.com/images/${hashUrl}.${formatFile}`
                     );
 
-                    fetchImage('https://' + options.headers.authority + url, './images/' + hashUrl + '.' + formatFile,
-                        (err) => trace(err));
+
+                    await fetchImage('https://' + options.headers.authority + url, './images/' + hashUrl + '.' + formatFile)
                 });
             });
 
