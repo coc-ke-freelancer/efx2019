@@ -36,7 +36,7 @@ app.listen(ENV.port, () => {
         if (e) { debug("ERROR CONNECT DATABASE ", e); return; }
         debug("CONNECTED DATABASE !!!");
         require("./boot");
-        // require("./schedule");
+        require("./schedule");
         debug("RUN SCHEDULER");
     });
-})
+});

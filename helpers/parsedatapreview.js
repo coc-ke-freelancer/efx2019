@@ -1,8 +1,11 @@
 const cheerio = require("cheerio");
 const moment = require('moment-timezone');
-const request = require("request");
+let request = require("request");
 const xxhash = require('xxhashjs');
 import { fetchImage } from './fetchimage';
+const FileCookieStore = require('tough-cookie-filestore');
+const j = request.jar(new FileCookieStore('./cookies.json'));
+request = request.defaults({ jar: j });
 
 let crawlDataPreview = (options) => {
     return new Promise(resolve => {
@@ -23,7 +26,7 @@ let crawlDataPreview = (options) => {
                 let ymdt = new Date().getFullYear() + "-" + groups.month + "-" + groups.day + " " + groups.time;
                 let timeMoment = moment.tz(ymdt, 'YYYY-MMM-DD, hh:mm A', "America/Los_Angeles").format();
                 groups.timemoment = timeMoment;
-                groups.timeStamp = new Date(timeMoment).getTime();
+                groups.timestamp = new Date(timeMoment).getTime();
                 groups.type = 'datapreview';
                 datapreviews.push(JSON.parse(JSON.stringify(groups)));
             });

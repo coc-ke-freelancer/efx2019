@@ -8,7 +8,7 @@ let NewsSchema = new Schema([{
     type: String,
     title: String,
     timemoment: String,
-    timeStamp: Number,
+    timestamp: Number,
     description: String,
     hashId: String
 }]);
