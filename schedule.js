@@ -63,6 +63,7 @@ for (const iterator of _modules) {
 }
 
 let boot = async () => {
+    debug("Start BOOT !!!");
     for (const iterator of _modules) {
         iterator.model.create(await iterator.filter(await iterator.action(iterator.fn, iterator.option)))
             .then(result => {

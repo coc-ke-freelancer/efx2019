@@ -15,6 +15,7 @@
     "path": "^0.12.7",
     "request": "^2.88.0",
     "serve-favicon": "^2.5.0",
+    "wpapi": "^1.2.1",
     "xxhashjs": "^0.2.2"
   },
   "devDependencies": {

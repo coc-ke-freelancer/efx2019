@@ -25,6 +25,11 @@ app.use(favicon(resolve('.', 'favicon.ico')))
 
 trace(ENV)
 
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    return next();
+})
+
 app.use(router)
 
 trace("Add [UPLOAD] router")
@@ -36,7 +41,7 @@ app.listen(ENV.port, () => {
         if (e) { debug("ERROR CONNECT DATABASE ", e); return; }
         debug("CONNECTED DATABASE !!!");
         require("./boot");
-        // require("./schedule");
+        require("./schedule");
         debug("RUN SCHEDULER");
     });
 })

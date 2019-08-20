@@ -4,14 +4,12 @@ const fs = require('fs');
 const request = require('request');
 const debug = require('debug');
 
-let fetchImage = (uri, filename, callback) => {
-    request.head(uri, (err, res, body) => {
-        if (!fs.existsSync(filename)) {
-            request(uri).pipe(fs.createWriteStream(filename)).on('error', callback);
-        } else {
-            debug('File is exists!!!!!!!');
-        }
-
+let fetchImage = (uri, filename) => {
+    return new Promise(resolve => {
+        request.head(uri, (err, res, body) => {
+            request(uri).pipe(fs.createWriteStream(filename));
+            setTimeout(resolve, 200);
+        });
     });
 };
 

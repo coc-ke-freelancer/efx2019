@@ -34,7 +34,7 @@ let crawlDataPreview = (options) => {
                 datapreviews[i].description = $(d).attr("data-body");
                 let $$ = cheerio.load(datapreviews[i].description);
                 datapreviews[i].imgs = [];
-                $$("img").each((i2, d2) => {
+                $$("img").each(async (i2, d2) => {
                     let url = $$(d2).attr("src");
                     datapreviews[i].description = datapreviews[i].description.replace(url, '__0x01__');
                     url = url.substring(0, url.indexOf('?'));
@@ -46,9 +46,7 @@ let crawlDataPreview = (options) => {
                         `https://efx.traderviet.com/images/${hashUrl}.${formatFile}`
                     );
 
-                    fetchImage('https://' + options.headers.authority + url, './images/' + hashUrl + '.' + formatFile,
-                        (err) => trace(err));
-                    // datapreviews[i].imgs.push(url);
+                    await fetchImage('https://' + options.headers.authority + url, './images/' + hashUrl + '.' + formatFile)
                 });
                 // trace(datapreviews[i]);
             });
