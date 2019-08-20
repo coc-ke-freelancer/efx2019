@@ -1,11 +1,7 @@
 const cheerio = require("cheerio");
 const moment = require('moment-timezone');
-let request = require("request");
 const xxhash = require('xxhashjs');
 import { fetchImage } from './fetchimage';
-const FileCookieStore = require('tough-cookie-filestore');
-const j = request.jar(new FileCookieStore('./cookies.json'));
-request = request.defaults({ jar: j });
 
 let crawlOptionBoards = (options) => {
     return new Promise(resolve => {

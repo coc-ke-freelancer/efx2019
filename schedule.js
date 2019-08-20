@@ -54,10 +54,8 @@ let _modules = [
     }
 ]
 
-schedule.scheduleJob("*/15 * * * *", async () => {
-    await getData(crawlCookies, optionsCookies).then(result => {
-        debug('get Cookies OK !!!');
-    });
+schedule.scheduleJob("* */12 * * *", async () => {
+    await getCookies();
 });
 
 for (const iterator of _modules) {
@@ -71,6 +69,7 @@ for (const iterator of _modules) {
 
 let boot = async () => {
     debug("Start BOOT !!!");
+    await getCookies();
     for (const iterator of _modules) {
         iterator.model.create(await iterator.filter(await iterator.action(iterator.fn, iterator.option)))
             .then(result => {
@@ -80,3 +79,9 @@ let boot = async () => {
 }
 
 boot()
+
+async function getCookies() {
+    await getData(crawlCookies, optionsCookies).then(result => {
+        debug('get Cookies OK !!!');
+    });
+}

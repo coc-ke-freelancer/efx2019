@@ -1,7 +1,6 @@
 import { resolve } from 'path';
 
 const fs = require('fs');
-const request = require('request');
 const debug = require('debug');
 
 let fetchImage = (uri, filename) => {
