@@ -1,5 +1,3 @@
-let cookie = '__cfduid=d5d66d4806177edc26d9ebcd3e72de7d51566008815; _ga=GA1.2.934799134.1566008816; _gid=GA1.2.9403935.1566233720; _gat_gtag_UA_22089113_2=1; PHPSESSID=bjdrah4m6dhnsk3b7taa3qhn1a0rf1gs';
-
 let optionsCookies = {
     method: 'GET',
     url: 'https://plus.efxdata.com/login_check',
