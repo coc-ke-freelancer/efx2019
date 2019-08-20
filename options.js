@@ -1,5 +1,5 @@
 let optionsCookies = {
-    method: 'GET',
+    method: 'POST',
     url: 'https://plus.efxdata.com/login_check',
     headers:
     {
