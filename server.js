@@ -12,7 +12,7 @@ const { resolve } = require("path");
 const { router } = require("./route");
 
 let ENV = {
-    port: process.env.EFX_PORT || 3000,
+    port: process.env.EFX_PORT || 3011,
     mongo_host: process.env.EFX_MONGO_URI || 'mongodb://localhost:27017/traderviet'
 }
 
