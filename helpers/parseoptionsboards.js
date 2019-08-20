@@ -51,14 +51,14 @@ let crawlOptionBoards = (options) => {
                     );
 
                     fetchImage('https://' + options.headers.authority + url, './images/' + hashUrl + '.' + formatFile,
-                        (err) => console.log(err));
+                        (err) => trace(err));
                 });
             });
 
             for (let i = 0; i < optionboards.length; i++) {
                 let hashId = xxhash.h32(optionboards[i].timemoment + optionboards[i].timeStamp + optionboards[i].title, 0x00).toString(16);
                 optionboards[i].hashId = hashId;
-                console.log(hashId, optionboards[i].title, optionboards[i].type);
+                trace(hashId, optionboards[i].title, optionboards[i].type);
             }
             return resolve(optionboards);
         });

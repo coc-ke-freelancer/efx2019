@@ -18,7 +18,7 @@ let filterDuplicateData = async (list) => {
         const item = list[index];
         let count = await NewsModel.count({ hashId: item.hashId });
         if (count < 1) arr.push(item);
-        else console.log('dup', item.hashId)
+        else debug('dup', item.hashId)
     }
     return arr;
 }
@@ -57,7 +57,7 @@ for (const iterator of _modules) {
     schedule.scheduleJob(iterator.schedule, async () => {
         iterator.model.create(await iterator.filter(await iterator.action(iterator.fn, iterator.option)))
             .then(result => {
-                console.log(iterator.message);
+                debug(iterator.message);
             });
     });
 }
@@ -66,7 +66,7 @@ let boot = async () => {
     for (const iterator of _modules) {
         iterator.model.create(await iterator.filter(await iterator.action(iterator.fn, iterator.option)))
             .then(result => {
-                console.log(iterator.message);
+                debug(iterator.message);
             });
     }
 }

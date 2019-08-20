@@ -1,9 +1,9 @@
 #!/usr/bin/node
 
-if (!process.env.DEBUG) process.env.DEBUG = "PFMT*"
+if (!process.env.DEBUG) process.env.DEBUG = "EFX*"
 
-global.debug = require("debug")("PFMT » ")
-global.trace = require("debug")("TRACE::PFMT » ")
+global.debug = require("debug")("EFX::DEBUG » ")
+global.trace = require("debug")("EFX::TRACE » ")
 const express = require("express")
 const bodyParser = require("body-parser")
 const { connect } = require("mongoose")
@@ -12,8 +12,8 @@ const { resolve } = require("path");
 const { router } = require("./route");
 
 let ENV = {
-    port: process.env.PFMT_PORT || 3000,
-    mongo_host: process.env.PFMT_MONGO_URI || 'mongodb://localhost:27017/traderviet'
+    port: process.env.EFX_PORT || 3000,
+    mongo_host: process.env.EFX_MONGO_URI || 'mongodb://localhost:27017/traderviet'
 }
 
 let app = express()
@@ -22,7 +22,6 @@ app.use(bodyParser.json({ type: 'application/*+json' }))
 app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
 app.use(bodyParser.text({ type: 'text/html' }))
 app.use(favicon(resolve('.', 'favicon.ico')))
-
 
 trace(ENV)
 
@@ -37,7 +36,7 @@ app.listen(ENV.port, () => {
         if (e) { debug("ERROR CONNECT DATABASE ", e); return; }
         debug("CONNECTED DATABASE !!!");
         require("./boot");
-        require("./schedule");
+        // require("./schedule");
         debug("RUN SCHEDULER");
     });
 })

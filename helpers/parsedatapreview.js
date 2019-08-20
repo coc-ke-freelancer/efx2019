@@ -47,15 +47,15 @@ let crawlDataPreview = (options) => {
                     );
 
                     fetchImage('https://' + options.headers.authority + url, './images/' + hashUrl + '.' + formatFile,
-                        (err) => console.log(err));
+                        (err) => trace(err));
                     // datapreviews[i].imgs.push(url);
                 });
-                // console.log(datapreviews[i]);
+                // trace(datapreviews[i]);
             });
             for (let i = 0; i < datapreviews.length; i++) {
                 let hashId = xxhash.h32(datapreviews[i].timemoment + datapreviews[i].timeStamp + datapreviews[i].title, 0x00).toString(16);
                 datapreviews[i].hashId = hashId;
-                console.log(hashId, datapreviews[i].title, datapreviews[i].type);
+                trace(hashId, datapreviews[i].title, datapreviews[i].type);
             }
             return resolve(datapreviews);
         });

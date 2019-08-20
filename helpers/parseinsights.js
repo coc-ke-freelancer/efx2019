@@ -46,13 +46,13 @@ let crawlInsights = (options) => {
                     );
 
                     fetchImage('https://' + options.headers.authority + url, './images/' + hashUrl + '.' + formatFile,
-                        (err) => console.log(err));
+                        (err) => trace(err));
                 });
             });
             for (let i = 0; i < insights.length; i++) {
                 let hashId = xxhash.h32(insights[i].timemoment + insights[i].timeStamp + insights[i].title, 0x00).toString(16);
                 insights[i].hashId = hashId;
-                console.log(hashId, insights[i].title, insights[i].type);
+                trace(hashId, insights[i].title, insights[i].type);
             }
             return resolve(insights);
         });
