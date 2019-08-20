@@ -10,5 +10,3 @@ const bootstrap = () => {
     }
 }
 bootstrap();
-
-require('./schedule');

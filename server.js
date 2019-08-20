@@ -9,6 +9,7 @@ const bodyParser = require("body-parser")
 const { connect } = require("mongoose")
 const favicon = require('serve-favicon')
 const { resolve } = require("path");
+const { router } = require("./route");
 
 let ENV = {
     port: process.env.PFMT_PORT || 3000,
@@ -25,7 +26,8 @@ app.use(favicon(resolve('.', 'favicon.ico')))
 
 trace(ENV)
 
-app.use(require("./route"))
+app.use(router)
+
 trace("Add [UPLOAD] router")
 
 app.listen(ENV.port, () => {
