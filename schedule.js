@@ -2,9 +2,9 @@ import { crawlOptionBoards } from "./helpers/parseoptionsboards";
 import { crawlInsights } from './helpers/parseinsights';
 import { crawlDataPreview } from './helpers/parsedatapreview';
 import { optionsBoards, optionsDataPreviews, optionsInsights } from './options'
+
 let NewsModel = require('./models/news');
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/traderviet');
+
 const schedule = require('node-schedule');
 
 
