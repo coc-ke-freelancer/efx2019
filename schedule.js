@@ -54,7 +54,7 @@ let _modules = [
     }
 ]
 
-schedule.scheduleJob("*/15 * * * *", async () => {
+schedule.scheduleJob("* */12 * * *", async () => {
     await getCookies();
 });
 
