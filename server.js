@@ -44,4 +44,4 @@ app.listen(ENV.port, () => {
         require("./schedule");
         debug("RUN SCHEDULER");
     });
-})
+});
