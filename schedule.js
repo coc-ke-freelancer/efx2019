@@ -61,8 +61,8 @@ let randomTime = () => {
     let type = "minutes"
     let type2 = "seconds"
     let listtime = [];
-    let min = 0;
-    let max = 1;
+    let min = 10;
+    let max = 30;
     let min2 = 0;
     let max2 = 60;
     rand.add(parseInt(Math.random() * (+max - +min) + +min), type);
