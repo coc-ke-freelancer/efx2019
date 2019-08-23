@@ -72,6 +72,7 @@ let randomTime = () => {
 }
 
 let scheduleJobs = (queue) => {
+    trace("QUEUE", queue);
     for (const iterator of _modules) {
         let time = queue.schedule.shift();
         schedule.scheduleJob(time, async () => {
