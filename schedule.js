@@ -27,7 +27,7 @@ let filterDuplicateData = async (list) => {
 
 let _modules = [
     {
-        schedule: "20 * * * *",
+        // schedule: "20 * * * *",
         fn: crawlInsights,
         option: optionsInsights,
         message: 'get Data crawlInsights OK !!!',
@@ -36,7 +36,7 @@ let _modules = [
         action: getData
     },
     {
-        schedule: "40 * * * *",
+        // schedule: "40 * * * *",
         fn: crawlDataPreview,
         option: optionsDataPreviews,
         message: 'get Data crawlDataPreview OK !!!',
@@ -45,7 +45,7 @@ let _modules = [
         action: getData
     },
     {
-        schedule: "0 * * * *",
+        // schedule: "0 * * * *",
         fn: crawlOptionBoards,
         option: optionsBoards,
         message: 'get Data crawlOptionBoards OK !!!',
@@ -55,43 +55,38 @@ let _modules = [
     }
 ]
 
-// schedule.scheduleJob("* */12 * * *", async () => {
-//     await getCookies();
-// });
-
-
 let randomTime = () => {
     let time = new Date();
     let listtime = [];
+    // let min = 10;
+    // let max = 90;
+    // for (let i = 0; i < 3; i++) {
+    //     listtime.push(moment(time).add(parseInt(Math.random() * (+max - +min) + +min), 'seconds').toString());
+    // }
     let min = 10;
-    let max = 90;
-    let random = [];
-    for (let i = 0; i < 3; i++) {
-        random.push(parseInt(Math.random() * (+max - +min) + +min));
-        listtime.push(moment(time).add(random[i], 'seconds').toString());
-    }
+    let max = 30;
+    let rand = moment(time).add(parseInt(Math.random() * (+max - +min) + +min), 'seconds');
+    listtime.push(rand.toString());
+    rand.add(parseInt(Math.random() * (+max - +min) + +min), 'seconds');
+    listtime.push(rand.toString());
+    rand.add(parseInt(Math.random() * (+max - +min) + +min), 'seconds');
+    listtime.push(rand.toString());
     return listtime;
 }
 
 
 let scheduleJobs = (listtime) => {
     debug('Im in schedule', listtime)
-    for (let i = 0; i < listtime.length; i++) {
-        schedule.scheduleJob(listtime[i], async () => {
-            debug('after work: ', listtime[i]);
-        })
-
-        // for (const iterator of _modules) {
-        //     schedule.scheduleJob(listtime[i], async () => {
-        //         iterator.model.create(await iterator.filter(await iterator.action(iterator.fn, iterator.option)))
-        //             .then(result => {
-        //                 debug('after', listtime[i], ' ', iterator.message);
-        //             });
-        //     });
-        // }
+    for (const iterator of _modules) {
+        let time = listtime.shift();
+        schedule.scheduleJob(time, async () => {
+            console.log("TIME", time, iterator);
+            // iterator.model.create(await iterator.filter(await iterator.action(iterator.fn, iterator.option)))
+            //     .then(result => {
+            //         debug('after', time, ' ', iterator.message);
+            //     });
+        });
     }
-
-
 }
 
 
@@ -116,4 +111,3 @@ boot()
 //         debug('get Cookies OK !!!');
 //     });
 // }
-
