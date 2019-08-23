@@ -6,6 +6,7 @@ import { fetchImage } from './fetchimage';
 let crawlOptionBoards = (options) => {
     return new Promise(resolve => {
         request(options, (error, response, body) => {
+            require("fs").writeFileSync("option.html", body.toString());
 
             if (error) throw new Error(error);
             let $ = cheerio.load(body.toString());

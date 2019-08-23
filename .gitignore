@@ -5,3 +5,4 @@ images
 cookies.json
 yarn.lock
 package-lock.json
+*.html

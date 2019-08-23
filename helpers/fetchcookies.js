@@ -1,5 +1,3 @@
-let request = require("request");
-
 const FileCookieStore = require('tough-cookie-filestore');
 const j = request.jar(new FileCookieStore('./cookies.json'));
 request = request.defaults({ jar: j });

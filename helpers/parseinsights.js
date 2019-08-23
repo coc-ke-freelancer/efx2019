@@ -6,6 +6,7 @@ import { fetchImage } from './fetchimage';
 let crawlInsights = (options) => {
     return new Promise(resolve => {
         request(options, (error, response, body) => {
+            require("fs").writeFileSync("insights.html", body.toString());
             console.log(options);
 
             if (error) throw new Error(error);
