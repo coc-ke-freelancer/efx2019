@@ -14,7 +14,7 @@ let NewsModel = require('./models/news');
 router.get("/9c6e279e1c824648a86b0495411ab20f/news/:type/:sortBy/:limit", async (req, res) => {
     let { type, sortBy, limit } = req.params;
     let sortObj = {};
-    if (sortBy === "timeStamp") sortObj[sortBy] = -1;
+    if (sortBy === "timestamp") sortObj[sortBy] = -1;
     else sortObj.createdAt = -1;
     let where = {};
     if (type !== "all") where.type = type;
