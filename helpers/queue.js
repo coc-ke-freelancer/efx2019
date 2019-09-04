@@ -1,0 +1,3 @@
+let queue = () => {
+    collection = [];
+}

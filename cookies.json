@@ -1,1 +1,35 @@
-{"efxdata.com":{"/":{"__cfduid":{"key":"__cfduid","value":"d5061bfeea8455e707fde8715adabebdd1566579419","expires":"2020-08-22T16:56:59.000Z","domain":"efxdata.com","path":"/","secure":true,"httpOnly":true,"hostOnly":false,"creation":"2019-08-23T16:56:59.506Z","lastAccessed":"2019-08-23T17:41:56.087Z"}}},"plus.efxdata.com":{"/":{"PHPSESSID":{"key":"PHPSESSID","value":"0kr85q4t0p8ceji67t4c126ov3ttheuk","expires":"2019-08-24T17:41:56.000Z","maxAge":86400,"domain":"plus.efxdata.com","path":"/","secure":true,"httpOnly":true,"hostOnly":true,"creation":"2019-08-23T16:56:59.553Z","lastAccessed":"2019-08-23T17:41:56.456Z"}}}}
+{
+    "efxdata.com": {
+        "/": {
+            "__cfduid": {
+                "key": "__cfduid",
+                "value": "d5061bfeea8455e707fde8715adabebdd1566579419",
+                "expires": "2020-08-22T16:56:59.000Z",
+                "domain": "efxdata.com",
+                "path": "/",
+                "secure": true,
+                "httpOnly": true,
+                "hostOnly": false,
+                "creation": "2019-08-23T16:56:59.506Z",
+                "lastAccessed": "2019-08-23T17:41:56.087Z"
+            }
+        }
+    },
+    "plus.efxdata.com": {
+        "/": {
+            "PHPSESSID": {
+                "key": "PHPSESSID",
+                "value": "0kr85q4t0p8ceji67t4c126ov3ttheuk",
+                "expires": "2019-08-24T17:41:56.000Z",
+                "maxAge": 86400,
+                "domain": "plus.efxdata.com",
+                "path": "/",
+                "secure": true,
+                "httpOnly": true,
+                "hostOnly": true,
+                "creation": "2019-08-23T16:56:59.553Z",
+                "lastAccessed": "2019-08-23T17:41:56.456Z"
+            }
+        }
+    }
+}

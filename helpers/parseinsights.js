@@ -52,6 +52,7 @@ let crawlInsights = (options) => {
             for (let i = 0; i < insights.length; i++) {
                 let hashId = xxhash.h32(insights[i].timemoment + insights[i].timeStamp + insights[i].title, 0x00).toString(16);
                 insights[i].hashId = hashId;
+                debug('TITLE INSIGHTS: ', insights[i].title);
                 trace(hashId, insights[i].title, insights[i].type);
             }
             return resolve(insights);

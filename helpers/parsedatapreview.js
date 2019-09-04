@@ -53,6 +53,7 @@ let crawlDataPreview = (options) => {
             for (let i = 0; i < datapreviews.length; i++) {
                 let hashId = xxhash.h32(datapreviews[i].timemoment + datapreviews[i].timeStamp + datapreviews[i].title, 0x00).toString(16);
                 datapreviews[i].hashId = hashId;
+                debug('TITLE DATAPREVIEWS: ', datapreviews[i].title);
                 trace(hashId, datapreviews[i].title, datapreviews[i].type);
             }
             return resolve(datapreviews);

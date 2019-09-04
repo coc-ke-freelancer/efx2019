@@ -58,6 +58,7 @@ let crawlOptionBoards = (options) => {
             for (let i = 0; i < optionboards.length; i++) {
                 let hashId = xxhash.h32(optionboards[i].timemoment + optionboards[i].timeStamp + optionboards[i].title, 0x00).toString(16);
                 optionboards[i].hashId = hashId;
+                debug('TITLE OPTIONBOARDS: ', optionboards[i].title);
                 trace(hashId, optionboards[i].title, optionboards[i].type);
             }
             return resolve(optionboards);
