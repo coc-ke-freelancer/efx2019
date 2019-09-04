@@ -12,9 +12,7 @@ const { resolve } = require("path");
 const { router } = require("./route");
 global.request = require("request");
 
-const FileCookieStore = require('tough-cookie-filestore');
-const j = request.jar(new FileCookieStore('./cookies.json'));
-request = request.defaults({ jar: j });
+request = request.defaults({ jar: true });
 
 let ENV = {
     port: process.env.EFX_PORT || 3011,
