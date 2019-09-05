@@ -67,8 +67,8 @@ let scheduleJobs = async () => {
 
 let boot = async () => {
     debug("Start BOOT !!! ");
-    // let time = '* 8,12,18,0 * * *';
-    let time = '2,4,6 * * * *'
+    let time = '* 8,12,18,0 * * *';
+    // let time = '9,12,16 * * * *'
     schedule.scheduleJob(time, async () => {
         await scheduleJobs();
     });
